@@ -12,6 +12,5 @@ package com.mycompany.tradingapp;
 public class Tradingapp {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
     }
 }

@@ -14,20 +14,20 @@ public class Stock {
     
     private double shareprice;
 
-    private String quantity;
+    private int quantity;
 
-    public Stock(String name, double shareprice, String quantity) {
+    public Stock(String name, double shareprice, int quantity) {
         this.name = name;
         this.shareprice = shareprice;
         this.quantity = quantity;
     }
     
     
-    public String getQuantity() {
+    public int getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(String quantity) {
+    public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
 
