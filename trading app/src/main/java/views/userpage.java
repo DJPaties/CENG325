@@ -17,11 +17,15 @@ import static views.Login.activeUser;
 public class userpage extends javax.swing.JFrame {
 
     /**
-     * Creates new form userpage
+     * Creates new form User Page
      */
     public FileAccess fa;
     public Controller ca;
+
     public userpage() {
+
+        this.fa = new FileAccess();
+        this.ca = new Controller();
         initComponents();
         setDefaultCloseOperation(userpage.DISPOSE_ON_CLOSE);
         //username.setText(activeUser.getName());
@@ -221,49 +225,49 @@ public class userpage extends javax.swing.JFrame {
 
     private void changenameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changenameActionPerformed
         // TODO add your handling code here:
-        String result = (String)JOptionPane.showInputDialog(null, "Enter new Name", "Change Name", JOptionPane.PLAIN_MESSAGE);
-        User u = null;
-        if(!result.isEmpty()){
-            for(int i=0; i<fa.readUsers().size();i++){
-                if(result.equals(fa.readUsers().get(i).getName())){
-                    u= fa.readUsers().get(i);
+        String result = (String) JOptionPane.showInputDialog(null, "Enter new Name", "Change Name", JOptionPane.PLAIN_MESSAGE);
+        if (!result.isEmpty()) {
+            for (int i = 0; i < fa.readUsers().size(); i++) {
+               
+                if (result.equals(fa.readUsers().get(i).getName())) {
+                    JOptionPane.showMessageDialog(null, "User name is already taken", "Failed", JOptionPane.ERROR_MESSAGE);
                     break;
                 }
             }
-            if(ca.modifyUserName(u, result)){
+            if (ca.modifyUserName(activeUser, result)) {
                 JOptionPane.showMessageDialog(null, "Removed User", "Success", JOptionPane.INFORMATION_MESSAGE);
                 Login lg = new Login();
                 lg.setVisible(true);
                 this.dispose();
-            }else{
-            JOptionPane.showMessageDialog(null, "Can't remove User\n User not found or error occured.", "Failed", JOptionPane.ERROR_MESSAGE);
-        }
-        }else{
+            } else {
+                JOptionPane.showMessageDialog(null, "Can't remove User\n User not found or error occured.", "Failed", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
             JOptionPane.showMessageDialog(null, "Enter User Name", "Failed", JOptionPane.ERROR_MESSAGE);
         }
-        
+
     }//GEN-LAST:event_changenameActionPerformed
 
     private void changepassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changepassActionPerformed
         // TODO add your handling code here:
-        String result = (String)JOptionPane.showInputDialog(null, "Enter new Password", "Change Password", JOptionPane.PLAIN_MESSAGE);
-        User u = null;
-        if(!result.isEmpty()){
-            for(int i=0; i<fa.readUsers().size();i++){
-                if(activeUser.getName().equals(fa.readUsers().get(i).getName())){
-                    u= fa.readUsers().get(i);
+        String result = (String) JOptionPane.showInputDialog(null, "Enter new Password", "Change Password", JOptionPane.PLAIN_MESSAGE);
+
+        if (!result.isEmpty()) {
+            for (int i = 0; i < fa.readUsers().size(); i++) {
+                if (result.equalsIgnoreCase(fa.readUsers().get(i).getName())) {
+                    JOptionPane.showMessageDialog(null, "User name is already taken", "Failed", JOptionPane.ERROR_MESSAGE);
                     break;
                 }
             }
-            if(ca.modifyUserPassword(u, result)){
+            if (ca.modifyUserPassword(activeUser, result)) {
                 Login lg = new Login();
                 lg.setVisible(true);
                 this.dispose();
                 JOptionPane.showMessageDialog(null, "Removed User", "Success", JOptionPane.INFORMATION_MESSAGE);
-            }else{
-            JOptionPane.showMessageDialog(null, "Can't remove User\n User not found or error occured.", "Failed", JOptionPane.ERROR_MESSAGE);
-        }
-        }else{
+            } else {
+                JOptionPane.showMessageDialog(null, "Can't remove User\n User not found or error occured.", "Failed", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
             JOptionPane.showMessageDialog(null, "Enter User Name", "Failed", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_changepassActionPerformed
@@ -271,7 +275,7 @@ public class userpage extends javax.swing.JFrame {
     private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
         // TODO add your handling code here:
         int confirm = JOptionPane.showConfirmDialog(null, "Are you sure?", "Logout", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
-        if(confirm == JOptionPane.YES_OPTION){
+        if (confirm == JOptionPane.YES_OPTION) {
             Login lg = new Login();
             lg.setVisible(true);
             this.dispose();

@@ -14,6 +14,10 @@ import models.User;
 public class Controller {
 
     private FileAccess fa;
+    
+    public Controller() {
+        this.fa = new FileAccess();
+    }
 
     public boolean addUser(User user) {
         ArrayList<User> allUsers = fa.readUsers();
@@ -43,21 +47,20 @@ public class Controller {
 
     public boolean modifyUserName(User user, String newName) {
        ArrayList<User> allUsers = fa.readUsers();
-
         if (!allUsers.contains(user)) {
             return false;
         }
 
         allUsers.remove(user);
-        fa.clearFile("Stocks.txt");
+        fa.clearFile("Users.txt");
 
         for (int i = 0; i < allUsers.size(); i++) {
             if (allUsers.get(i).equals(user)) {
                 user.setName(newName);
-                fa.writeToFile("Stocks.txt", user.toString());
+                fa.writeToFile("Users.txt", user.toString());
 
             } else {
-                fa.writeToFile("Stocks.txt", allUsers.get(i).toString());
+                fa.writeToFile("Users.txt", allUsers.get(i).toString());
 
             }
 

@@ -22,7 +22,7 @@ public class FileAccess {
         try {
             FileWriter fw = new FileWriter(fileName, true);
             fw.write(data + "\n");
-            fw.write("------------------------------");
+            fw.write("------------------------------\n");
             fw.close();
         } catch (Exception exception) {
 
@@ -51,10 +51,11 @@ public class FileAccess {
             int counter = 0;
 
             while (bf.ready()) {
+                line = bf.readLine();
                 if (counter % 2 == 0) {
-                    line = bf.readLine();
                     data = line.split("\t");
                     User user = new User(data[0], Integer.parseInt(data[1]), data[2]);
+                    System.out.println("Hakuna: "+user);
                     users.add(user);
                 }
                 counter++;
@@ -62,7 +63,6 @@ public class FileAccess {
         }catch (Exception exception){
             
         }
-
         return users;
     }
     
@@ -78,8 +78,8 @@ public class FileAccess {
             int counter = 0;
             
             while (bf.ready()) {
-                if (counter % 2 == 0){
                     line = bf.readLine();
+                if (counter % 2 == 0){
                     data = line.split("\t");
                     Stock stock = new Stock(data[0], Double.parseDouble(data[1]), Integer.parseInt(data[2]));
                     stocks.add(stock);

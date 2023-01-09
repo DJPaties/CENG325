@@ -20,6 +20,7 @@ public class Register extends javax.swing.JFrame {
      */
     public FileAccess fa;
     public Controller ca;
+
     public Register() {
         initComponents();
         setDefaultCloseOperation(Register.DISPOSE_ON_CLOSE);
@@ -138,35 +139,33 @@ public class Register extends javax.swing.JFrame {
         String user = usr.getText();
         String ps = pass.getText();
         boolean register = true;
-        if(!user.isEmpty() && !ps.isEmpty()){
-            
-            for(int i = 0;i<fa.readUsers().size();i++)
-        {
-            if(user.equals(fa.readUsers().get(i).getName())){
-                JOptionPane.showMessageDialog(null, "Username is already registered", "Can't Register",HEIGHT);
-                register = false;
-                break;
+        if (!user.isEmpty() && !ps.isEmpty()) {
+
+            for (int i = 0; i < fa.readUsers().size(); i++) {
+                if (user.equals(fa.readUsers().get(i).getName())) {
+                    JOptionPane.showMessageDialog(null, "Username is already registered", "Can't Register", HEIGHT);
+                    register = false;
+                    break;
+                }
             }
+        } else {
+            JOptionPane.showMessageDialog(null, "Enter Username or Password", "Can't Register", HEIGHT);
         }
-        }
-        else{
-            JOptionPane.showMessageDialog(null, "Enter Username or Password", "Can't Register",HEIGHT);
-        }
-        
+
         if(register){
             User us = new User(user, User.getTotalUsers(),ps);
             ca.addUser(us);
             JOptionPane.showMessageDialog(null, "Successfully Registered", "Success",JOptionPane.INFORMATION_MESSAGE);
-        }
+            this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
-
+    }
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        
+
         Login lg = new Login();
         lg.setVisible(true);
         this.dispose();
-        
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

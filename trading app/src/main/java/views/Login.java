@@ -141,7 +141,6 @@ public class Login extends javax.swing.JFrame {
         for(int i = 0;i<fa.readUsers().size();i++)
         {
             if(user.equals(fa.readUsers().get(i).getName())&& ps.equals(fa.readUsers().get(i).getPassword())){
-                JOptionPane.showMessageDialog(null, "Username is already registered", "Can't Register",JOptionPane.INFORMATION_MESSAGE);
                 activeUser = fa.readUsers().get(i);
                 userpage us = new userpage();
                 us.setVisible(true);
