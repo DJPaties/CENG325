@@ -4,6 +4,14 @@
  */
 package views;
 
+import controller.FileAccess;
+import java.util.ArrayList;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import models.Stock;
+
 /**
  *
  * @author dghai
@@ -13,9 +21,13 @@ public class homepage extends javax.swing.JFrame {
     /**
      * Creates new form homepage
      */
+    public FileAccess fa;
+   
     public homepage() {
         initComponents();
         setDefaultCloseOperation(homepage.DISPOSE_ON_CLOSE);
+        fa = new FileAccess();
+        
     }
 
     /**
@@ -69,6 +81,11 @@ public class homepage extends javax.swing.JFrame {
 
         viewStocks.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         viewStocks.setText("View Stocks As Guest");
+        viewStocks.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewStocksActionPerformed(evt);
+            }
+        });
 
         admin.setText("Admin");
         admin.addActionListener(new java.awt.event.ActionListener() {
@@ -77,7 +94,7 @@ public class homepage extends javax.swing.JFrame {
             }
         });
 
-        jLabel4.setText("Stock Prices ad shares are samples and are not liscnesed. Copyright@2022");
+        jLabel4.setText("Stock Prices and shares are samples and are not liscnesed. Copyright@2022");
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(204, 0, 204));
@@ -177,6 +194,27 @@ public class homepage extends javax.swing.JFrame {
         userpage up = new userpage();
         up.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void viewStocksActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewStocksActionPerformed
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(null, "Viewing as guest will restrict some features such as viewing quantity\nLog in to avoid this issue", "Warning", JOptionPane.WARNING_MESSAGE);
+        ArrayList<Stock> allstocks = fa.readStocks();
+        int rows=allstocks.size();
+        JTable table = new JTable(rows,2);
+        JFrame f = new JFrame();
+        f.setSize(300,450);
+        f.add(new JScrollPane(table));
+        f.setVisible(true);
+       
+        table.getColumnModel().getColumn(0).setHeaderValue("Stock Available");
+        table.getColumnModel().getColumn(1).setHeaderValue("Stock Price");
+       
+        for(int i=0;i<allstocks.size();i++){
+            table.setValueAt(allstocks.get(i).getName(), i, 0);
+            table.setValueAt(allstocks.get(i).getShareprice(), i, 1);
+
+       } 
+    }//GEN-LAST:event_viewStocksActionPerformed
 
     /**
      * @param args the command line arguments
