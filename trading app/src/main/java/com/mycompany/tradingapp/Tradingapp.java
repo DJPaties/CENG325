@@ -5,6 +5,8 @@
 
 package com.mycompany.tradingapp;
 
+import views.homepage;
+
 /**
  *
  * @author dghai
@@ -12,6 +14,7 @@ package com.mycompany.tradingapp;
 public class Tradingapp {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        homepage hp = new homepage();
+        hp.setVisible(true);
     }
 }

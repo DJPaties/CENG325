@@ -42,28 +42,53 @@ public class Controller {
     }
 
     public boolean modifyUserName(User user, String newName) {
-        ArrayList<User> allUsers = fa.readUsers();
+       ArrayList<User> allUsers = fa.readUsers();
+
+        if (!allUsers.contains(user)) {
+            return false;
+        }
+
+        allUsers.remove(user);
+        fa.clearFile("Stocks.txt");
 
         for (int i = 0; i < allUsers.size(); i++) {
-            if (allUsers.get(i).getName().equals(user.getName())) {
-                allUsers.get(i).setName(newName);
-                return true;
+            if (allUsers.get(i).equals(user)) {
+                user.setName(newName);
+                fa.writeToFile("Stocks.txt", user.toString());
+
+            } else {
+                fa.writeToFile("Stocks.txt", allUsers.get(i).toString());
+
             }
+
         }
-        return false;
+
+        return true;
     }
-     
-        public boolean modifyUserPassword(User user, String newPassword) {
+
+    public boolean modifyUserPassword(User user, String newPassword) {
         ArrayList<User> allUsers = fa.readUsers();
 
-        for (int i = 0; i < allUsers.size(); i++) {
-            if (allUsers.get(i).getName().equals(user.getName())) {
-                allUsers.get(i).setPassword(newPassword);
-                return true;
-            }
+        if (!allUsers.contains(user)) {
+            return false;
         }
-        return false;
+
+        allUsers.remove(user);
+        fa.clearFile("Stocks.txt");
+
+        for (int i = 0; i < allUsers.size(); i++) {
+            if (allUsers.get(i).equals(user)) {
+                user.setPassword(newPassword);
+                fa.writeToFile("Stocks.txt", user.toString());
+
+            } else {
+                fa.writeToFile("Stocks.txt", allUsers.get(i).toString());
+
+            }
+
+        }
+
+        return true;
     }
-    
 
 }

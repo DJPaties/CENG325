@@ -16,7 +16,7 @@ public class User {
     
     private String password;
     
-    private static String totalUsers;
+    private static int totalUsers=0;
 
     public User(String name, int id, String password) {
         this.name = name;
@@ -25,7 +25,7 @@ public class User {
         totalUsers+=1;
     }
 
-    public static String getTotalUsers() {
+    public static int getTotalUsers() {
         return totalUsers;
     }
 

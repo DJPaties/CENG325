@@ -15,6 +15,7 @@ public class homepage extends javax.swing.JFrame {
      */
     public homepage() {
         initComponents();
+        setDefaultCloseOperation(homepage.DISPOSE_ON_CLOSE);
     }
 
     /**
@@ -35,6 +36,7 @@ public class homepage extends javax.swing.JFrame {
         admin = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -45,6 +47,11 @@ public class homepage extends javax.swing.JFrame {
 
         login.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         login.setText("Log In");
+        login.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loginActionPerformed(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel2.setText("Log In to see your balance:");
@@ -54,17 +61,34 @@ public class homepage extends javax.swing.JFrame {
 
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jButton1.setText("Register");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         viewStocks.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         viewStocks.setText("View Stocks As Guest");
 
         admin.setText("Admin");
+        admin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                adminActionPerformed(evt);
+            }
+        });
 
         jLabel4.setText("Stock Prices ad shares are samples and are not liscnesed. Copyright@2022");
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(204, 0, 204));
         jLabel5.setText("Easy and Effiecient!");
+
+        jButton2.setText("jButton2");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -96,6 +120,10 @@ public class homepage extends javax.swing.JFrame {
                 .addGap(427, 427, 427)
                 .addComponent(jLabel5)
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jButton2)
+                .addGap(288, 288, 288))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -113,7 +141,9 @@ public class homepage extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(174, 174, 174)
+                .addGap(63, 63, 63)
+                .addComponent(jButton2)
+                .addGap(72, 72, 72)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(admin)
                     .addComponent(jLabel4)))
@@ -121,6 +151,32 @@ public class homepage extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginActionPerformed
+        // TODO add your handling code here:
+        Login lg = new Login();
+        lg.setVisible(true);
+        
+        
+    }//GEN-LAST:event_loginActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        Register rg = new Register();
+        rg.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void adminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminActionPerformed
+        // TODO add your handling code here:
+        admincreds ac = new admincreds();
+        ac.setVisible(true);
+    }//GEN-LAST:event_adminActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        userpage up = new userpage();
+        up.setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -160,6 +216,7 @@ public class homepage extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton admin;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
